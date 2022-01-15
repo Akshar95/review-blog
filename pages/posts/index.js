@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { getAllPosts } from '../../lib/api'
+import Link from "next/link";
+import { getAllPosts, getPostBySlug } from "../../lib/api";
 
 export default function Posts({ posts }) {
   return (
@@ -41,5 +41,16 @@ export function getStaticProps() {
     props: {
       posts: getAllPosts(),
     },
+  };
+}
+
+export function getStaticPaths() {
+  return {
+    fallback: false,
+    paths: getAllPosts().map((post) => ({
+      params: {
+        slug: post.slug,
+      },
+    })),
   };
 }
