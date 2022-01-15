@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getAllPosts } from '../../lib/api'
 
 export default function Posts({ posts }) {
   return (
@@ -38,22 +39,7 @@ export default function Posts({ posts }) {
 export function getStaticProps() {
   return {
     props: {
-      posts: [
-        {
-          title: "My first post",
-          createdAt: "2021-05-01",
-          excerpt: "A short excerpt summarizing the post.",
-          permalink: "/posts/my-first-post",
-          slug: "my-first-post",
-        },
-        {
-          title: "My second post",
-          createdAt: "2021-05-04",
-          excerpt: "Another summary that is short.",
-          permalink: "/posts/my-second-post",
-          slug: "my-second-post",
-        },
-      ],
+      posts: getAllPosts(),
     },
   };
 }
